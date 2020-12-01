@@ -134,4 +134,8 @@ Route::prefix('admin')->group(function () {
     Route::get('/update-status', [StatusController::class, 'update']);
     Route::get('/delete-status', [StatusController::class, 'destroy']);
 
+
+    Route::get('/testimoni', [TestimonyController::class, 'index']);
+
+
 });
