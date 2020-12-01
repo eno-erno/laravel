@@ -26,9 +26,9 @@ use App\Http\Controllers\Admin\WidgetsController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::prefix('admin')->group(function () {
 
