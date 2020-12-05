@@ -15,6 +15,8 @@ use App\Http\Controllers\Admin\ShippingController;
 use App\Http\Controllers\Admin\StatusController;
 use App\Http\Controllers\Admin\WidgetsController;
 
+use App\Http\Controllers\frontend\HomeController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,9 +28,7 @@ use App\Http\Controllers\Admin\WidgetsController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', [HomeController::class, 'index']);
 
 Route::prefix('admin')->group(function () {
 
