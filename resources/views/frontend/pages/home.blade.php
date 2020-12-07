@@ -7,12 +7,12 @@
 @endsection
 @section('content-pages')
         <!-- HERO SECTION-->
-        <section class="hero pb-3 bg-cover bg-center d-flex align-items-center" style="background: url({{asset('frontend/img/hero-banner-alt.jpg')}})">
+        <section class="hero pb-3 bg-cover bg-center d-flex align-items-center" style="background: url({{asset('frontend/img/'.$banner->images)}})">
             <div class="container py-5">
             <div class="row px-4 px-lg-5">
                 <div class="col-lg-6">
-                <p class="text-muted small text-uppercase mb-2">New Inspiration 2020</p>
-                <h1 class="h2 text-uppercase mb-3">20% off on new season</h1><a class="btn btn-dark" href="shop.html">Browse collections</a>
+                {!! $banner->description !!}
+                <a class="btn btn-dark" href="{{url($banner->link)}}">More</a>
                 </div>
             </div>
             </div>
@@ -25,9 +25,27 @@
                         <p class="small text-muted small text-uppercase mb-1">Carefully created collections</p>
                         <h2 class="h5 text-uppercase mb-4">Browse our categories</h2>
                     </header>
-                    <div class="col-md-4 mb-4 mb-md-0"><a class="category-item" href="shop.html"><img class="img-fluid" src="{{asset('frontend/img/cat-img-1.jpg')}}" alt=""><strong class="category-item-title">Clothes</strong></a></div>
-                    <div class="col-md-4 mb-4 mb-md-0"><a class="category-item mb-4" href="shop.html"><img class="img-fluid" src="{{asset('frontend/img/cat-img-2.jpg')}}" alt=""><strong class="category-item-title">Shoes</strong></a><a class="category-item" href="shop.html"><img class="img-fluid" src="{{asset('frontend/img/cat-img-3.jpg')}}" alt=""><strong class="category-item-title">Watches</strong></a></div>
-                    <div class="col-md-4"><a class="category-item" href="shop.html"><img class="img-fluid" src="{{asset('frontend/img/cat-img-4.jpg')}}" alt=""><strong class="category-item-title">Electronics</strong></a></div>
+                    @foreach($category as $key => $rows)
+                        @if($key == 0 )
+                            <div class="col-md-4 mb-4 mb-md-0">
+                                <a class="category-item" href="shop.html">
+                                    <img class="img-fluid" src="{{asset('frontend/img/'.$rows->images)}}" alt="">
+                                    <strong class="category-item-title">{{ucwords($rows->name)}}</strong>
+                                </a>
+                            </div>
+                        @elseif ($key >= 1 && $key <= 2)
+                            <div class="col-md-4 mb-4 mb-md-0">
+                                <a class="category-item mb-4" href="shop.html">
+                                    <img class="img-fluid" src="{{asset('frontend/img/'.$rows->images)}}" alt="">
+                                    <strong class="category-item-title">{{ucwords($rows->name)}}</strong>
+                                </a>
+                                <a class="category-item" href="shop.html">
+                                    <img class="img-fluid" src="{{asset('frontend/img/'.$rows->images)}}" alt="">
+                                    <strong class="category-item-title">{{ucwords($rows->name)}}</strong>
+                                </a>
+                            </div>
+                        @endif
+                    @endforeach
                 </div>
             </div>
         </section>
