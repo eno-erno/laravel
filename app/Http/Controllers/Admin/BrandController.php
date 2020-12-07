@@ -25,6 +25,7 @@ class BrandController extends Controller
     public function create()
     {
         //
+
     }
 
     /**
@@ -35,7 +36,13 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd("oke");
+        $save = Brand::create([
+            'name' => $request->input('name'),
+            'logo' => $request->input('logo')
+        ]);
+
+        return redirect('admin/brand')->with(['success' => 'Data Berhasil di Tambahkan']);
     }
 
     /**
@@ -57,7 +64,8 @@ class BrandController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Brand::find($id);
+        return view('backend/admin/content-pages/brand.update', compact($data));
     }
 
     /**
@@ -69,7 +77,14 @@ class BrandController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+         $post = new Brand();
+        $post = Brand ::find($id);
+
+        $post->name = $request->input('name');
+        $post->logo = $request->input('logo');
+        $post->save();
+
+        return redirect('/admin/brand')->with(['success' => 'Data Berhasil di Update']);
     }
 
     /**
@@ -80,6 +95,8 @@ class BrandController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = Brnad::where('id', $id)->first();
+        $data->delete();
+        return redirect('admin/brand')->with(['success' => 'Data Berhasil di Hapus']);
     }
 }

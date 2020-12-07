@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Category_product;
 
 class CategoryProductController extends Controller
 {
@@ -35,7 +36,12 @@ class CategoryProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $save = Category_product::create([
+            'parent' => $request->input('parent'),
+            'name' => $request->input('name')
+        ]);
+
+        return redirect('admin/brand')->with(['success' => 'Data Berhasil di Tambahkan']);
     }
 
     /**
@@ -57,7 +63,8 @@ class CategoryProductController extends Controller
      */
     public function edit($id)
     {
-        //
+         $data = Category_product::find($id);
+        return view('backend/admin/content-pages/brand.update', compact($data));
     }
 
     /**
@@ -69,7 +76,14 @@ class CategoryProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $post = new Category_product();
+        $post = Category_product ::find($id);
+
+        $post->name = $request->input('parent');
+        $post->logo = $request->input('name');
+        $post->save();
+
+        return redirect('/admin/brand')->with(['success' => 'Data Berhasil di Update']);
     }
 
     /**
@@ -80,6 +94,8 @@ class CategoryProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = Brnad::where('id', $id)->first();
+        $data->delete();
+        return redirect('admin/categor-produk')->with(['success' => 'Data Berhasil di Hapus']);
     }
 }

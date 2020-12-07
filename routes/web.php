@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\PopupController;
 use App\Http\Controllers\Admin\ShippingController;
 use App\Http\Controllers\Admin\StatusController;
 use App\Http\Controllers\Admin\WidgetsController;
+use App\Http\Controllers\Admin\BrandController;
 
 use App\Http\Controllers\frontend\HomeController;
 
@@ -36,21 +37,21 @@ Route::prefix('admin')->group(function () {
     Route::get('/widgets', [WidgetsController::class, 'index']);
 
 
-    // admin product 
+    // admin product
     Route::get('/product', [ProductController::class, 'index']);
     Route::get('/create-product', [ProductController::class, 'create']);
-    Route::get('/store-product', [ProductController::class, 'store']);
-    Route::get('/edit-product', [ProductController::class, 'edit']);
+    Route::post('/store-product', [ProductController::class, 'store']);
+    Route::get('/edit-product/{id}', [ProductController::class, 'edit']);
     Route::get('/update-product', [ProductController::class, 'update']);
-    Route::get('/delete-product', [ProductController::class, 'destroy']);
+    Route::get('/delete-product/{id}', [ProductController::class, 'destroy']);
 
     // admin brand 
-    Route::get('/brand', [ProductController::class, 'index']);
-    Route::get('/create-brand', [ProductController::class, 'create']);
-    Route::get('/store-brand', [ProductController::class, 'store']);
-    Route::get('/edit-brand', [ProductController::class, 'edit']);
-    Route::get('/update-brand', [ProductController::class, 'update']);
-    Route::get('/delete-brand', [ProductController::class, 'destroy']);
+    Route::get('/brand', [BrandController::class, 'index']);
+    Route::get('/create-brand', [BrandController::class, 'create']);
+    Route::post('/store-brand', [BrandController::class, 'store']);
+    Route::get('/edit-brand', [BrandController::class, 'edit']);
+    Route::get('/update-brand', [BrandController::class, 'update']);
+    Route::get('/delete-brand', [BrandController::class, 'destroy']);
 
     // admin about 
     Route::get('/about', [AboutController::class, 'index']);

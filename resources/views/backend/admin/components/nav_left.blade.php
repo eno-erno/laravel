@@ -20,7 +20,7 @@
       </div>
 
       <!-- Sidebar Menu -->
-      <nav class="mt-2">
+      <nav class="mt-2 mb-5">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
@@ -216,6 +216,14 @@
             </a>
           </li>
            <li class="nav-item">
+            <a href="{{url('admin/jadwal')}}" class="nav-link {{ (request()->segment(2) == 'jadwal') ? 'active' : '' }}">
+              <i class="nav-icon fas fa-calendar-alt"></i>
+              <p>
+                Jadwal Tayang
+              </p>
+            </a>
+          </li>
+           <li class="nav-item">
             <a href="{{url('admin/about')}}" class="nav-link {{ (request()->segment(2) == 'about') ? 'active' : '' }}">
               <i class="nav-icon fas fa-calendar-alt"></i>
               <p>
@@ -267,6 +275,30 @@
                 <a href="starter.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Media Sosial</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+           <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon far fa-image"></i>
+              <p>
+                Setting Warna
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="starter.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Warna Head</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="starter.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Warna Footer</p>
                 </a>
               </li>
             </ul>
