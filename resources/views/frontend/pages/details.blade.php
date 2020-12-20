@@ -137,7 +137,7 @@
                                     </a>
                                         <div class="media-body ml-3">
                                             <strong class="h6">
-                                                <a class="reset-anchor animsition-link" href="">${ item.name }</a>
+                                                <a class="reset-anchor animsition-link" href="detail.html">${ item.name }</a>
                                             </strong>
                                         </div>
                                 </div>
