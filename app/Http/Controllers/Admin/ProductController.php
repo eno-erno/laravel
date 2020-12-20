@@ -48,16 +48,17 @@ class ProductController extends Controller
     public function store(Request $request)
     {
 
+
         $data = Product::create([
             'name' => $request->input('nama_produk'),
             'category_product_id' => $request->input('kategori'),
             'brand_id' => $request->input('brand'),
-            'sku' => $request->input('sku'),
+            'kode_produk' => $request->input('sku'),
             'qty' => $request->input('qty'),
             'weight' => $request->input('berat'),
             'stock_status' => $request->input('status_stok'),
             'description' => $request->input('keterangan'),
-            'price' => $request->input('price'),
+            'harga' => $request->input('price'),
             'diskon' => $request->input('diskon') == "" ? "0" : $request->input('diskon'),
             'diskon_status' => $request->input('status_diskon') == "" ? "0" : $request->input('status_diskon'),
         ]);
@@ -143,12 +144,12 @@ class ProductController extends Controller
             $post->name = $request->input('nama_produk');
             $post->category_product_id = $request->input('kategori');
             $post->brand_id = $request->input('brand');
-            $post->sku = $request->input('sku');
+            $post->kode_produk = $request->input('sku');
             $post->qty = $request->input('qty');
             $post->weight = $request->input('berat');
             $post->stock_status = $request->input('status_stok');
             $post->description = $request->input('keterangan');
-            $post->price = $request->input('price');
+            $post->harga = $request->input('price');
             $post->diskon =  $request->input('diskon') == "" ? "0" : $request->input('diskon');
             $post->diskon_status = $request->input('status_diskon') == "" ? "0" : $request->input('status_diskon');
             $post->save();
@@ -158,12 +159,12 @@ class ProductController extends Controller
                 $post->name = $request->input('nama_produk');
                 $post->category_product_id = $request->input('kategori');
                 $post->brand_id = $request->input('brand');
-                $post->sku = $request->input('sku');
+                $post->kode_produk = $request->input('sku');
                 $post->qty = $request->input('qty');
                 $post->weight = $request->input('berat');
                 $post->stock_status = $request->input('status_stok');
                 $post->description = $request->input('keterangan');
-                $post->price = $request->input('price');
+                $post->harga = $request->input('price');
                 $post->diskon =  $request->input('diskon') == "" ? "0" : $request->input('diskon');
                 $post->diskon_status = $request->input('status_diskon') == "" ? "0" : $request->input('status_diskon');
                 $post->save();

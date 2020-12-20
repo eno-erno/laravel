@@ -13,14 +13,16 @@ class Product extends Model
             'category_product_id',
             'brand_id',
             'name',
-            'price',
+            'harga',
             'qty',
             'weight',
-            'sku',
+            'kode_produk',
             'stock_status',
             'description',
             'diskon_status',
             'diskon',
+            'thumbnail',
+            'popular_product',
             'created_at'
     ];
 }

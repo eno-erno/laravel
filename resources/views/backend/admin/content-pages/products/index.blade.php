@@ -39,7 +39,7 @@
                   <thead>
                   <tr>
                     <th>Nama Produk</th>
-                    <th>SKU</th>
+                    <th>SKU/Kode Produk</th>
                     <th>Stock</th>
                     <th>Berat</th>
                     <th>Status Stok</th>
@@ -53,11 +53,11 @@
                   <?php $no++ ;?>
                          <tr>
                             <td>{{$item->name}}</td>
-                            <td>{{$item->sku}}</td>
+                            <td>{{$item->kode_produk}}</td>
                             <td>{{$item->qty}}</td>
                             <td>{{$item->weight}}</td>
                             <td><?= $item->stock_status == "1" ? "<span class='badge badge-success'>Aktif</span>" : "<span class='badge badge-danger'>Tidak akif</span>" ?></td>
-                            <td>{{$item->price}}</td>
+                            <td>Rp. {{number_format($item->harga,2,',','.')  }}</td>
                             <td>
                                 <a href="{{url('admin/edit-product')}}/{{$item->id}}" class="badge badge-success p-2 h-5"><i class="far fa-eye"></i></a>
                                 <a href="" data-toggle="modal" data-target="#myModalDelete{{ $no }}" class="badge badge-danger p-2 h-5"><i class="far fa-trash-alt"></i></a>
@@ -86,7 +86,7 @@
                   <tfoot>
                   <tr>
                     <th>Nama Produk</th>
-                    <th>SKU</th>
+                    <th>SKU/Kode Produk</th>
                     <th>Stock</th>
                     <th>Berat</th>
                     <th>Status Stok</th>
