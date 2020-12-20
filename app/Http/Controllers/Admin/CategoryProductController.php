@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Category_product;
 
 class CategoryProductController extends Controller
 {
@@ -13,8 +14,8 @@ class CategoryProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('backend/admin/content-pages/category_product.index');
+    {   $dataAll = Category_product::all();
+        return view('backend/admin/content-pages/category_product.index', compact('dataAll'));
     }
 
     /**
@@ -35,7 +36,13 @@ class CategoryProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $save = Category_product::create([
+            'parent' => $request->input('parent'),
+            'icon' => $request->input('icon'),
+            'name' => $request->input('nama_kategori')
+        ]);
+
+        return redirect('admin/kategori-produk')->with(['success' => 'Data Berhasil di Tambahkan']);
     }
 
     /**
@@ -57,7 +64,9 @@ class CategoryProductController extends Controller
      */
     public function edit($id)
     {
-        //
+         $data = Category_product::find($id);
+
+        return view('backend/admin/content-pages/category_product.update', compact('data'));
     }
 
     /**
@@ -69,7 +78,15 @@ class CategoryProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+       
+        $post = new Category_product();
+        $post = Category_product ::find($id);
+
+        $post->name = $request->input('name');
+        $post->icon = $request->input('icon');
+        $post->save();
+
+        return redirect('/admin/kategori-produk')->with(['success' => 'Data Berhasil di Update']);
     }
 
     /**
@@ -80,6 +97,9 @@ class CategoryProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        $data = Category_product::where('id', $id)->first();
+        $data->delete();
+        return redirect('admin/kategori-produk')->with(['success' => 'Data Berhasil di Hapus']);
     }
 }

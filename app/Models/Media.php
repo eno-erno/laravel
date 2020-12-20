@@ -11,6 +11,6 @@ class Media extends Model
     protected $fillable = [
             'name',
             'icon',
-            'link' 
+            'link'
     ];
 }

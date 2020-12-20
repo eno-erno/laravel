@@ -15,8 +15,11 @@ class CreatePopupsTable extends Migration
     {
         Schema::create('popups', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('image');
+            $table->string('name')->nullable();
+            $table->string('images')->nullable();
+            $table->string('status')->nullable();
+            $table->string('link')->nullable();
+            $table->longText('description')->nullable();
             $table->timestamps();
         });
     }

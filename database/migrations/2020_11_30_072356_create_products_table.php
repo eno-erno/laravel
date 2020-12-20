@@ -15,16 +15,19 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->integer('category_product_id');
-            $table->integer('brand_id');
-            $table->string('name');
-            $table->integer('qty');
-            $table->integer('weight');
-            $table->string('sku');
-            $table->integer('stock_status');
-            $table->longText('description');
-            $table->integer('diskon_status');
-            $table->integer('diskon');
+            $table->integer('category_product_id')->nullable();
+            $table->integer('brand_id')->nullable();
+            $table->string('name')->nullable();
+            $table->string('harga')->nullable();
+            $table->integer('qty')->nullable();
+            $table->integer('weight')->nullable();
+            $table->string('kode_produk')->nullable();
+            $table->integer('stock_status')->nullable();
+            $table->longText('description')->nullable();
+            $table->integer('diskon_status')->nullable();
+            $table->integer('diskon')->nullable();
+            $table->integer('popular_product')->nullable();
+            $table->integer('thumbnail')->nullable();
             $table->timestamps();
         });
     }

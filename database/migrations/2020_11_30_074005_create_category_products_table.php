@@ -15,8 +15,9 @@ class CreateCategoryProductsTable extends Migration
     {
         Schema::create('category_products', function (Blueprint $table) {
             $table->id();
-            $table->string('parent');
-            $table->string('name');
+            $table->string('parent')->nullable();
+            $table->string('name')->nullable();
+            $table->string('icon')->nullable();
             $table->timestamps();
         });
     }

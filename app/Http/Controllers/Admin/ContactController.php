@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Contact;
+
 
 class ContactController extends Controller
 {
@@ -13,8 +15,9 @@ class ContactController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('backend/admin/content-pages/contact.index');
+    {   
+        $dataAll = Contact::all();
+        return view('backend/admin/content-pages/contact.index', compact('dataAll'));
     }
 
     /**
@@ -24,7 +27,7 @@ class ContactController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend/admin/content-pages/contact.create');
     }
 
     /**
@@ -35,7 +38,24 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+         if ($request->hasFile('images')) {
+            $resorce = $request->file('images');
+            $name   = $resorce->getClientOriginalName();
+            $resorce->move(\base_path() . "/public/images-contact", $name);
+            $path = asset('/images-contact/'.$name);
+
+            $save = Contact::create([
+                'title' => $request->input('title'),
+                'email' => $request->input('email'),
+                'maps' => $request->input('maps'),
+                'description' => $request->input('keterangan'),
+                'image' => $path,
+            ]);
+        }
+
+
+        return redirect('admin/contact')->with(['success' => 'Data Berhasil di Tambahkan']);
     }
 
     /**
@@ -57,7 +77,8 @@ class ContactController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Contact::find($id);
+        return view('backend/admin/content-pages/contact.update', compact('data'));
     }
 
     /**
@@ -69,7 +90,32 @@ class ContactController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $post = new Contact();
+        $post = Contact::find($id);
+
+
+       if ($request->hasFile('images')) {
+            $resorce       = $request->file('images');
+            $name   = $resorce->getClientOriginalName();
+            $resorce->move(\base_path() . "/public/images-contact", $name);
+            $path = asset('/images-contact/'.$name);
+
+            $post->title = $request->input('title');
+            $post->email = $request->input('email');
+            $post->maps = $request->input('maps');
+            $post->description = $request->input('keterangan');
+            $post->image = $path;
+            $post->save();
+
+        } else {
+            $post->title = $request->input('title');
+            $post->email = $request->input('email');
+            $post->maps = $request->input('maps');
+            $post->description = $request->input('keterangan');
+            $post->save();
+        }
+
+       return redirect('admin/contact')->with(['success' => 'Data Berhasil diubah']);
     }
 
     /**
@@ -80,6 +126,8 @@ class ContactController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = Contact::where('id', $id)->first();
+        $data->delete();
+        return redirect('admin/contact')->with(['success' => 'Data Berhasil di Hapus']);
     }
 }

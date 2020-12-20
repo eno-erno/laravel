@@ -9,6 +9,7 @@ class Shipping extends Model
 {
     use HasFactory;
     protected $fillable = [
-          
+          'code',
+          'keterangan'
     ];
 }

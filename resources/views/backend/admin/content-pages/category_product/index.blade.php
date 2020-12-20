@@ -31,49 +31,55 @@
             <div class="col-md-12">
                 <div class="card">
               <div class="card-header">
-                <a href="{{url('admin/create-products')}}" class="btn btn-success">Tambah Kategori Produk</a>
+                <a href="" class="btn btn-success" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-plus"></i> Tambah Kategori Produk</a>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
-                  <tr>
-                    <th>Nama</th>
-                    <th>SKU</th>
-                    <th>Stock</th>
-                    <th>Quantity</th>
-                    <th>weight</th>
-                    <th>Image</th>
-                    <th>Price</th>
-                    <th>Description</th>
-                    <th>Action</th>
-                  </tr>
+                    <tr>
+                      <th>Nama</th>
+                      <th>Icon</th>
+                      <th>Action</th>
+                    </tr>
                   </thead>
                   <tbody>
-                  {{-- @foreach ($dataAll as $item) --}}
+                  
+                  <?php $no = 0;?>
+                  @foreach ($dataAll as $item)
+                  <?php $no++ ;?>
                          <tr>
-                            <th>Nama</th>
-                            <th>SKU</th>
-                            <th>Stock</th>
-                            <th>Quantity</th>
-                            <th>weight</th>
-                            <th>Image</th>
-                            <th>Price</th>
-                            <th>Description</th>
-                            <th>Action</th>
+                            <td>{{$item->name}}</td>
+                            <td><?= $item->icon ?></td>
+                            <td> 
+                              <a href="{{url('admin/edit-kategori-produk')}}/{{$item->id}}"><span class="badge badge-success p-2"><i class="far fa-eye"></i></span></a>
+                              <a href="" data-toggle="modal" data-target="#myModalDelete{{ $no }}"><span class="badge badge-danger p-2"><i class="far fa-trash-alt"></i></span></a>
+                            </td>
                         </tr>
-                  {{-- @endforeach                  --}}
+
+                        <!-- Modal detete -->
+                        <div class="modal fade" id="myModalDelete{{ $no }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header bg-success">
+                                <h5 class="modal-title" id="exampleModalLabel">Yakin dihapus !</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-warning" data-dismiss="modal"><i class="far fa-window-close"></i> Batal</button>
+                                <a href="{{url('admin/delete-kategori-produk')}}/{{$item->id}}" class="btn btn-danger" name="save"><i class="far fa-trash-alt"></i> Hapus</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                  @endforeach                 
                   </tbody>
                   <tfoot>
                   <tr>
                     <th>Nama</th>
-                    <th>SKU</th>
-                    <th>Stock</th>
-                    <th>Quantity</th>
-                    <th>weight</th>
-                    <th>Image</th>
-                    <th>Price</th>
-                    <th>Description</th>
+                    <th>Logo Brand</th>
                     <th>Action</th>
                   </tr>
                   </tfoot>
@@ -115,21 +121,31 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <form>
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-         
-      </div>
-      <div class="modal-footer">
-        <input type="text" id="products">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+      <form action="{{url('admin/store-kategori-produk')}}" method="post">
+        @csrf
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Tambah Kategori Produk</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+           <div class="form-group">
+             <input type="hidden" class="form-control" value="1" name="parent">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Name</label>
+            <input type="text" class="form-control" name="nama_kategori">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Icon</label>
+            <input type="text" class="form-control" name="icon">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Simpan</button>
+        </div>
     </form>
     </div>
   </div>
