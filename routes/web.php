@@ -26,9 +26,26 @@ use App\Http\Controllers\Admin\BannersliderController;
 use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Admin\AdminauthController;
 use App\Http\Controllers\Admin\ReportController;
-
-// frontend 
 use App\Http\Controllers\frontend\HomeController;
+use App\Http\Controllers\frontend\ProductController as Products;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/produk', [Products::class, 'index']);
+Route::post('/pesanan', [Products::class, 'pesanan'])->name('pesanan');
+Route::get('/detail-pesanan', [Products::class, 'detail_cart']);
+Route::get('/detail-produk/{code}', [Products::class, 'detail_produk']);
+Route::get('/kategori/{id}', [Products::class, 'kategori']);
 
 /*
 |--------------------------------------------------------------------------
