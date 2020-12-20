@@ -10,6 +10,7 @@ class Category_product extends Model
     use HasFactory;
     protected $fillable = [
         'parent',
-        'name'
+        'name',
+        'icon'
     ];
 }

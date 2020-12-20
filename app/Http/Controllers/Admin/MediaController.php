@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Media;
 
 class MediaController extends Controller
 {
@@ -14,7 +15,8 @@ class MediaController extends Controller
      */
     public function index()
     {
-        return view('backend/admin/content-pages/media.index');
+        $dataAll = Media::all();
+        return view('backend/admin/content-pages/media_sosial.index', compact('dataAll'));
     }
 
     /**
@@ -35,7 +37,14 @@ class MediaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $save = Media::create([
+            'name' => $request->input('name'),
+            'icon' => $request->input('icon'),
+            'link' => $request->input('link'),
+        ]);
+
+        return redirect('admin/media-sosial')->with(['success' => 'Data Berhasil di Tambahkan']);
     }
 
     /**
@@ -57,7 +66,8 @@ class MediaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Media::find($id);
+        return view('backend/admin/content-pages/media_sosial.update', compact('data'));
     }
 
     /**
@@ -69,7 +79,15 @@ class MediaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $post = new Media();
+        $post = Media::find($id);
+
+        $post->name = $request->input('name');
+        $post->icon = $request->input('icon');
+        $post->link = $request->input('link');
+        $post->save();
+
+       return redirect('admin/media-sosial')->with(['success' => 'Data Berhasil diubah']);
     }
 
     /**
@@ -80,6 +98,8 @@ class MediaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = Media::where('id', $id)->first();
+        $data->delete();
+        return redirect('admin/media-sosial')->with(['success' => 'Data Berhasil di Hapus']);
     }
 }

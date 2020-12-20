@@ -29,4 +29,5 @@
 
   <!-- jQuery -->
   <script src="{{url('backend/plugins/jquery/jquery.min.js')}}"></script>
+  
 </head>

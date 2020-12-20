@@ -14,8 +14,8 @@ class CategoryProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('backend/admin/content-pages/category_product.index');
+    {   $dataAll = Category_product::all();
+        return view('backend/admin/content-pages/category_product.index', compact('dataAll'));
     }
 
     /**
@@ -38,10 +38,11 @@ class CategoryProductController extends Controller
     {
         $save = Category_product::create([
             'parent' => $request->input('parent'),
-            'name' => $request->input('name')
+            'icon' => $request->input('icon'),
+            'name' => $request->input('nama_kategori')
         ]);
 
-        return redirect('admin/brand')->with(['success' => 'Data Berhasil di Tambahkan']);
+        return redirect('admin/kategori-produk')->with(['success' => 'Data Berhasil di Tambahkan']);
     }
 
     /**
@@ -64,7 +65,8 @@ class CategoryProductController extends Controller
     public function edit($id)
     {
          $data = Category_product::find($id);
-        return view('backend/admin/content-pages/brand.update', compact($data));
+
+        return view('backend/admin/content-pages/category_product.update', compact('data'));
     }
 
     /**
@@ -76,14 +78,15 @@ class CategoryProductController extends Controller
      */
     public function update(Request $request, $id)
     {
+       
         $post = new Category_product();
         $post = Category_product ::find($id);
 
-        $post->name = $request->input('parent');
-        $post->logo = $request->input('name');
+        $post->name = $request->input('name');
+        $post->icon = $request->input('icon');
         $post->save();
 
-        return redirect('/admin/brand')->with(['success' => 'Data Berhasil di Update']);
+        return redirect('/admin/kategori-produk')->with(['success' => 'Data Berhasil di Update']);
     }
 
     /**
@@ -94,8 +97,9 @@ class CategoryProductController extends Controller
      */
     public function destroy($id)
     {
-        $data = Brnad::where('id', $id)->first();
+
+        $data = Category_product::where('id', $id)->first();
         $data->delete();
-        return redirect('admin/categor-produk')->with(['success' => 'Data Berhasil di Hapus']);
+        return redirect('admin/kategori-produk')->with(['success' => 'Data Berhasil di Hapus']);
     }
 }

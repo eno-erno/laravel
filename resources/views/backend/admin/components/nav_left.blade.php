@@ -176,8 +176,21 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+
+          @if(request()->segment(2) == 'laporan' || request()->segment(2) == 'laporan-penjualan' || request()->segment(2) == 'laporan-produk' || 
+              request()->segment(2) == 'laporan-order-sukses' || request()->segment(2) == 'laporan-order-gagal')
+              <?php 
+                $active = "active";
+                $menu_open = "menu-open";
+              ?>
+          @else
+              <?php 
+                $active = "";
+                $menu_open = "";
+              ?>
+          @endif
+          <li class="nav-item has-treeview {{$menu_open}}">
+            <a href="#" class="nav-link {{$active}}">
               <i class="nav-icon fas fa-edit"></i>
               <p>
                 Laporan
@@ -186,21 +199,10 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{url('admin/laporan-penjualan')}}" class="nav-link {{ (request()->segment(2) == 'laporan-penjualan') ? 'active' : '' }}">
+                <a href="{{url('admin/laporan')}}" class="nav-link {{ request()->segment(2) == 'laporan' || request()->segment(2) == 'laporan-penjualan' || request()->segment(2) == 'laporan-produk' || 
+                       request()->segment(2) == 'laporan-order-sukses' || request()->segment(2) == 'laporan-order-gagal'  ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Penjualan</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/forms/general.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Google Analytics</p>
-                </a>
-              </li>
-               <li class="nav-item">
-                <a href="pages/forms/general.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Google Trends</p>
                 </a>
               </li>
             </ul>
@@ -208,7 +210,7 @@
 
           <li class="nav-header">COMPONENTS</li>
           <li class="nav-item">
-            <a href="{{url('admin/about')}}" class="nav-link {{ (request()->segment(2) == 'about') ? 'active' : '' }}">
+            <a href="{{url('admin/logo')}}" class="nav-link {{ (request()->segment(2) == 'logo') ? 'active' : '' }}">
               <i class="nav-icon fas fa-calendar-alt"></i>
               <p>
                 Logo
@@ -224,7 +226,7 @@
             </a>
           </li>
            <li class="nav-item">
-            <a href="{{url('admin/about')}}" class="nav-link {{ (request()->segment(2) == 'about') ? 'active' : '' }}">
+            <a href="{{url('admin/testimoni')}}" class="nav-link {{ (request()->segment(2) == 'testimoni') ? 'active' : '' }}">
               <i class="nav-icon fas fa-calendar-alt"></i>
               <p>
                 Testimoni
@@ -236,7 +238,6 @@
               <i class="nav-icon fas fa-calendar-alt"></i>
               <p>
                 About
-                <span class="badge badge-info right">2</span>
               </p>
             </a>
           </li>
@@ -244,14 +245,28 @@
             <a href="{{url('admin/contact')}}" class="nav-link {{ (request()->segment(2) == 'contact') ? 'active' : '' }}">
               <i class="nav-icon fas fa-calendar-alt"></i>
               <p>
-                Contact
-                <span class="badge badge-info right">2</span>
+                Info Alamat
               </p>
             </a>
           </li>
 
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+
+          {{-- Photo Gallery  --}}
+         @if(request()->segment(2) == 'background' || request()->segment(2) == 'photo-gallery' || request()->segment(2) == 'popup' ||
+            request()->segment(2) == 'banner-promo' || request()->segment(2) == 'media-sosial' || request()->segment(2) == 'slider')
+              <?php 
+                $active = "active";
+                $menu_open = "menu-open";
+              ?>
+          @else
+              <?php 
+                $active = "";
+                $menu_open = "";
+              ?>
+          @endif
+
+          <li class="nav-item has-treeview {{$menu_open}}">
+            <a href="#" class="nav-link {{$active}}">
               <i class="nav-icon far fa-image"></i>
               <p>
                 Gallery
@@ -260,19 +275,37 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="starter.html" class="nav-link">
+                <a href="{{url('admin/background')}}" class="nav-link {{ (request()->segment(2) == 'background') ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Backgound</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="starter.html" class="nav-link">
+               <li class="nav-item">
+                <a href="{{url('admin/photo-gallery')}}" class="nav-link {{ (request()->segment(2) == 'photo-gallery') ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Pop UP</p>
+                  <p>Photo Gallery</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="starter.html" class="nav-link">
+                <a href="{{url('admin/popup')}}" class="nav-link {{ (request()->segment(2) == 'popup') ? 'active' : '' }}">                
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Pop Up Promo</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{url('admin/slider')}}" class="nav-link {{ (request()->segment(2) == 'slider') ? 'active' : '' }}">                
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Banner Slider</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{url('admin/banner-promo')}}" class="nav-link {{ (request()->segment(2) == 'banner-promo') ? 'active' : '' }}">                
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Banner Promo</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{url('admin/media-sosial')}}" class="nav-link {{ (request()->segment(2) == 'media-sosial') ? 'active' : '' }}">                
                   <i class="far fa-circle nav-icon"></i>
                   <p>Media Sosial</p>
                 </a>
@@ -280,33 +313,32 @@
             </ul>
           </li>
 
-           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="nav-icon far fa-image"></i>
+           <li class="nav-item">
+            <a href="{{url('admin/warna')}}" class="nav-link {{ (request()->segment(2) == 'warna') ? 'active' : '' }}">
+              <i class="fas fa-fill-drip"></i>
               <p>
                 Setting Warna
-                <i class="fas fa-angle-left right"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="starter.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Warna Head</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="starter.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Warna Footer</p>
-                </a>
-              </li>
-            </ul>
           </li>
+
+        
           <li class="nav-header">AUTHENTICATION</li>
-         
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+
+          {{-- Photo Gallery  --}}
+         @if(request()->segment(2) == 'akun')
+              <?php 
+                $active = "active";
+                $menu_open = "menu-open";
+              ?>
+          @else
+              <?php 
+                $active = "";
+                $menu_open = "";
+              ?>
+          @endif
+          <li class="nav-item has-treeview {{$menu_open}}">
+            <a href="#" class="nav-link {{$active}}">
               <i class="nav-icon far fa-image"></i>
               <p>
                 Auth
@@ -315,15 +347,9 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{url('akun')}}" class="nav-link {{ (request()->segment(2) == 'akun') ? 'active' : '' }}">
+                <a href="{{url('admin/akun')}}" class="nav-link {{ (request()->segment(2) == 'akun') ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Akun</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{url('rubah-password')}}" class="nav-link {{ (request()->segment(2) == 'rubah-password') ? 'active' : '' }}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Rubah Password</p>
                 </a>
               </li>
               <li class="nav-item">

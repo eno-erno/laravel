@@ -31,7 +31,7 @@
             <div class="col-md-12">
                 <div class="card">
               <div class="card-header">
-                <a href="{{url('admin/create-products')}}" class="btn btn-success">Tambah</a>
+                <a href="{{url('admin/create-order')}}" class="btn btn-success"> <i class="fas fa-plus"></i> Tambah</a>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -50,19 +50,21 @@
                   </tr>
                   </thead>
                   <tbody>
-                  {{-- @foreach ($dataAll as $item) --}}
+                  @foreach ($dataAll as $item)
                          <tr>
-                            <th>Nama</th>
-                            <th>SKU</th>
-                            <th>Stock</th>
-                            <th>Quantity</th>
-                            <th>weight</th>
-                            <th>Image</th>
-                            <th>Price</th>
-                            <th>Description</th>
+                         <th>{{$item->id}}</th>
+                         <th>{{$item->kurir}}</th>
+                         <th>{{$item->status_id}}</th>
+                         <th>{{$item->order_code}}</th>
+                         <th>{{$item->pay_status}}</th>
+                         <th>{{$item->konfirmasi_pesanan}}</th>
+                         <th>{{$item->delivery_status}}</th>
+                         <th>{{$item->payment}}</th>
+                         <th>{{$item->weight}}</th>
+                         <th>{{$item->total_price}}</th>
                             <th>Action</th>
                         </tr>
-                  {{-- @endforeach                  --}}
+                  @endforeach              
                   </tbody>
                   <tfoot>
                   <tr>

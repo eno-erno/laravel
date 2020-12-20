@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Background;
+
 
 class BackgroundController extends Controller
 {
@@ -14,7 +16,8 @@ class BackgroundController extends Controller
      */
     public function index()
     {
-        return view('backend/admin/content-pages/background.index');
+        $dataAll = Background::all();
+        return view('backend/admin/content-pages/background.index', compact('dataAll'));
     }
 
     /**
@@ -35,7 +38,22 @@ class BackgroundController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        if ($request->hasFile('images')) {
+            $resorce = $request->file('images');
+            $name   = $resorce->getClientOriginalName();
+            $resorce->move(\base_path() . "/public/images-background", $name);
+            $path = asset('/images-background/'.$name);
+
+            $save = Background::create([
+                'name' => $request->input('title'),
+                'status' => $request->input('status'),
+                'image' => $path,
+            ]);
+        }
+
+
+        return redirect('admin/background')->with(['success' => 'Data Berhasil di Tambahkan']);
     }
 
     /**
@@ -57,7 +75,8 @@ class BackgroundController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Background::find($id);
+        return view('backend/admin/content-pages/background.update', compact('data'));
     }
 
     /**
@@ -69,7 +88,27 @@ class BackgroundController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+         $post = new Background();
+        $post = Background::find($id);
+
+
+       if ($request->hasFile('images')) {
+            $resorce       = $request->file('images');
+            $name   = $resorce->getClientOriginalName();
+            $resorce->move(\base_path() . "/public/images-background", $name);
+            $path = asset('/images-background/'.$name);
+
+            $post->name = $request->input('title');
+            $post->status = $request->input('status');
+            $post->image = $path;
+            $post->save();
+        } else {
+            $post->name = $request->input('title');
+            $post->status = $request->input('status');
+            $post->save();
+        }
+
+       return redirect('admin/background')->with(['success' => 'Data Berhasil diubah']);
     }
 
     /**
@@ -80,6 +119,8 @@ class BackgroundController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = Background::where('id', $id)->first();
+        $data->delete();
+        return redirect('admin/background')->with(['success' => 'Data Berhasil di Hapus']);
     }
 }

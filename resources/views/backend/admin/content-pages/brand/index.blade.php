@@ -1,6 +1,8 @@
 @extends('backend/admin/base.base')
 @section('title', 'Halaman Brand')
 @section('content-pages')
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+
 <style>
     .select2-selection {height:37px !important}
 </style>
@@ -39,41 +41,49 @@
                   <thead>
                   <tr>
                     <th>Nama</th>
-                    <th>SKU</th>
-                    <th>Stock</th>
-                    <th>Quantity</th>
-                    <th>weight</th>
-                    <th>Image</th>
-                    <th>Price</th>
-                    <th>Description</th>
+                    <th>Logo Brand</th>
                     <th>Action</th>
                   </tr>
                   </thead>
                   <tbody>
-                  {{-- @foreach ($dataAll as $item) --}}
+                  
+                  <?php $no = 0;?>
+                  @foreach ($dataAll as $item)
+                  <?php $no++ ;?>
                          <tr>
-                            <th>Nama</th>
-                            <th>SKU</th>
-                            <th>Stock</th>
-                            <th>Quantity</th>
-                            <th>weight</th>
-                            <th>Image</th>
-                            <th>Price</th>
-                            <th>Description</th>
-                            <th>Action</th>
+                            <td>{{$item->name}}</td>
+                            <td>
+                                <a data-fancybox="gallery" href="{{$item->logo}}"><img width="50" src="{{$item->logo}}"></a>
+                            </td>
+                            <td> 
+                              <a href="{{url('admin/edit-brand')}}/{{$item->id}}"><span class="badge badge-success p-2"><i class="far fa-eye"></i></span></a>
+                              <a href="" data-toggle="modal" data-target="#myModalDelete{{ $no }}"><span class="badge badge-danger p-2"><i class="far fa-trash-alt"></i></span></a>
+                            </td>
                         </tr>
-                  {{-- @endforeach                  --}}
+
+                        <!-- Modal detete -->
+                        <div class="modal fade" id="myModalDelete{{ $no }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header bg-success">
+                                <h5 class="modal-title" id="exampleModalLabel">Yakin dihapus !</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-warning" data-dismiss="modal"><i class="far fa-window-close"></i> Batal</button>
+                                <a href="{{url('admin/delete-brand')}}/{{$item->id}}" class="btn btn-danger" name="save"><i class="far fa-trash-alt"></i> Hapus</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                  @endforeach                 
                   </tbody>
                   <tfoot>
                   <tr>
                     <th>Nama</th>
-                    <th>SKU</th>
-                    <th>Stock</th>
-                    <th>Quantity</th>
-                    <th>weight</th>
-                    <th>Image</th>
-                    <th>Price</th>
-                    <th>Description</th>
+                    <th>Logo Brand</th>
                     <th>Action</th>
                   </tr>
                   </tfoot>
@@ -115,10 +125,10 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <form action="{{url('admin/store-brand')}}" method="post">
+      <form action="{{url('admin/store-brand')}}" enctype="multipart/form-data" method="post">
         @csrf
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Tambah Brand</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -126,11 +136,11 @@
         <div class="modal-body">
           <div class="form-group">
             <label for="exampleInputEmail1">Name</label>
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" name="title">
           </div>
           <div class="form-group">
             <label for="exampleInputEmail1">Logo Brand</label>
-            <input type="file" class="form-control">
+            <input type="file" class="form-control" name="logo">
           </div>
         </div>
         <div class="modal-footer">
@@ -148,6 +158,7 @@
     $("#exampleModal").modal("show")
   })
 </script>
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 
 @endsection
  

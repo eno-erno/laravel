@@ -27,24 +27,9 @@
         <div class="row">
           <div class="col-md-3 col-sm-6 col-12">
             <div class="info-box">
-              <span class="info-box-icon bg-info"><i class="far fa-envelope"></i></span>
-
+              <span class="info-box-icon bg-info"><i class="fas fa-video"></i></span>
               <div class="info-box-content">
-                <span class="info-box-text">Messages</span>
-                <span class="info-box-number">1,410</span>
-              </div>
-              <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
-          </div>
-          <!-- /.col -->
-          <div class="col-md-3 col-sm-6 col-12">
-            <div class="info-box">
-              <span class="info-box-icon bg-success"><i class="far fa-flag"></i></span>
-
-              <div class="info-box-content">
-                <span class="info-box-text">Bookmarks</span>
-                <span class="info-box-number">410</span>
+                <span class="info-box-text"><a href="{{url('admin/jadwal')}}" class="text-dark">Jadwal Live</a></span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -56,8 +41,7 @@
               <span class="info-box-icon bg-warning"><i class="far fa-copy"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Uploads</span>
-                <span class="info-box-number">13,648</span>
+                <span class="info-box-text"><a href="{{url('admin/laporan-penjualan')}}" class="text-dark">Laporan Penjualan</a></span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -66,11 +50,23 @@
           <!-- /.col -->
           <div class="col-md-3 col-sm-6 col-12">
             <div class="info-box">
-              <span class="info-box-icon bg-danger"><i class="far fa-star"></i></span>
+              <span class="info-box-icon bg-success"><i class="fas fa-chart-line"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Likes</span>
-                <span class="info-box-number">93,139</span>
+                <span class="info-box-text"><a href="https://trends.google.co.id/trends/?geo=ID" target="_blank" class="text-dark">Google Trands</a></span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+          
+          <div class="col-md-3 col-sm-6 col-12">
+            <div class="info-box">
+              <span class="info-box-icon bg-danger"><i class="fas fa-chart-pie"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text"><a href="https://analytics.google.com/analytics/web/provision/#/provision" target="_blank" class="text-dark">Google Analytics</a></span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -80,28 +76,14 @@
         </div>
         <!-- /.row -->
 
+        <hr>
 
         <!-- =========================================================== -->
 
         <!-- Small Box (Stat card) -->
-        <h5 class="mb-2 mt-4">Small Box</h5>
+        <h5 class="mb-2 mt-4">Orders</h5>
         <div class="row">
-          <div class="col-lg-3 col-6">
-            <!-- small card -->
-            <div class="small-box bg-info">
-              <div class="inner">
-                <h3>150</h3>
-
-                <p>New Orders</p>
-              </div>
-              <div class="icon">
-                <i class="fas fa-shopping-cart"></i>
-              </div>
-              <a href="#" class="small-box-footer">
-                More info <i class="fas fa-arrow-circle-right"></i>
-              </a>
-            </div>
-          </div>
+         
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small card -->
@@ -109,10 +91,10 @@
               <div class="inner">
                 <h3>53<sup style="font-size: 20px">%</sup></h3>
 
-                <p>Bounce Rate</p>
+                <p>Order Baru</p>
               </div>
               <div class="icon">
-                <i class="ion ion-stats-bars"></i>
+                <i class="fas fa-cart-arrow-down"></i>
               </div>
               <a href="#" class="small-box-footer">
                 More info <i class="fas fa-arrow-circle-right"></i>
@@ -126,7 +108,7 @@
               <div class="inner">
                 <h3>44</h3>
 
-                <p>User Registrations</p>
+                <p>Order Diterima/Tolak</p>
               </div>
               <div class="icon">
                 <i class="fas fa-user-plus"></i>
@@ -139,14 +121,14 @@
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small card -->
-            <div class="small-box bg-danger">
+            <div class="small-box bg-info">
               <div class="inner">
                 <h3>65</h3>
 
-                <p>Unique Visitors</p>
+                <p>Order Siap Proses</p>
               </div>
               <div class="icon">
-                <i class="fas fa-chart-pie"></i>
+                <i class="fas fa-tasks"></i>
               </div>
               <a href="#" class="small-box-footer">
                 More info <i class="fas fa-arrow-circle-right"></i>
@@ -154,6 +136,102 @@
             </div>
           </div>
           <!-- ./col -->
+
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small card -->
+            <div class="small-box bg-secondary">
+              <div class="inner">
+                <h3>65</h3>
+
+                <p>Sudah di Transfer</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-money-check-alt"></i>
+              </div>
+              <a href="#" class="small-box-footer">
+                More info <i class="fas fa-arrow-circle-right"></i>
+              </a>
+            </div>
+          </div>
+          <!-- ./col -->
+
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small card -->
+            <div class="small-box bg-danger">
+              <div class="inner">
+                <h3>65</h3>
+
+                <p>Resi Belum di Input</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-barcode"></i>
+              </div>
+              <a href="#" class="small-box-footer">
+                More info <i class="fas fa-arrow-circle-right"></i>
+              </a>
+            </div>
+          </div>
+          <!-- ./col -->
+
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small card -->
+            <div class="small-box bg-primary">
+              <div class="inner">
+                <h3>65</h3>
+
+                <p>Order Siap Kirim</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-paper-plane"></i>
+              </div>
+              <a href="#" class="small-box-footer">
+                More info <i class="fas fa-arrow-circle-right"></i>
+              </a>
+            </div>
+          </div>
+          <!-- ./col -->
+
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small card -->
+            <div class="small-box bg-danger">
+              <div class="inner">
+                <h3>65</h3>
+
+                <p>Order Selesai</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-clipboard-check"></i>
+              </div>
+              <a href="#" class="small-box-footer">
+                More info <i class="fas fa-arrow-circle-right"></i>
+              </a>
+            </div>
+          </div>
+          <!-- ./col -->
+
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small card -->
+            <div class="small-box bg-warning">
+              <div class="inner">
+                <h3>65</h3>
+
+                <p>Komplain</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-undo"></i>
+              </div>
+              <a href="#" class="small-box-footer">
+                More info <i class="fas fa-arrow-circle-right"></i>
+              </a>
+            </div>
+          </div>
+          <!-- ./col -->
+
         </div>
         <!-- /.row -->
  

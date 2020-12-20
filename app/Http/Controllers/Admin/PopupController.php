@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Popup;
+
 
 class PopupController extends Controller
 {
@@ -14,7 +16,8 @@ class PopupController extends Controller
      */
     public function index()
     {
-        return view('backend/admin/content-pages/popup.index');
+         $dataAll = Popup::all();
+        return view('backend/admin/content-pages/popup.index', compact('dataAll'));
     }
 
     /**
@@ -35,7 +38,23 @@ class PopupController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->hasFile('images')) {
+            $resorce = $request->file('images');
+            $name   = $resorce->getClientOriginalName();
+            $resorce->move(\base_path() . "/public/images-popup", $name);
+            $path = asset('/images-popup/'.$name);
+
+
+            $save = Popup::create([
+                'name' => $request->input('title'),
+                'status' => $request->input('status'),
+                'description' => $request->input('keterangan'),
+                'images' => $path,
+            ]);
+        }
+
+
+        return redirect('admin/popup')->with(['success' => 'Data Berhasil di Tambahkan']);
     }
 
     /**
@@ -57,7 +76,8 @@ class PopupController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Popup::find($id);
+        return view('backend/admin/content-pages/popup.update', compact('data'));
     }
 
     /**
@@ -69,7 +89,30 @@ class PopupController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $post = new popup();
+        $post = popup::find($id);
+
+
+       if ($request->hasFile('images')) {
+            $resorce       = $request->file('images');
+            $name   = $resorce->getClientOriginalName();
+            $resorce->move(\base_path() . "/public/images-popup", $name);
+            $path = asset('/images-popup/'.$name);
+
+            $post->name = $request->input('title');
+            $post->description = $request->input('keterangan');
+            $post->status = $request->input('status');
+            $post->images = $path;
+            $post->save();
+
+        } else {
+            $post->name = $request->input('title');
+            $post->description = $request->input('keterangan');
+            $post->status = $request->input('status');
+            $post->save();
+        }
+
+       return redirect('admin/popup')->with(['success' => 'Data Berhasil diubah']);
     }
 
     /**
@@ -80,6 +123,9 @@ class PopupController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = Popup::where('id', $id)->first();
+        $data->delete();
+        return redirect('admin/popup')->with(['success' => 'Data Berhasil di Hapus']);
+    
     }
 }

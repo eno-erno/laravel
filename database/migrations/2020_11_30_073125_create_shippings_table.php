@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateShippingesTable extends Migration
+class CreateShippingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateShippingesTable extends Migration
      */
     public function up()
     {
-        Schema::create('shippinges', function (Blueprint $table) {
+        Schema::create('shippings', function (Blueprint $table) {
             $table->id();
-            $table->string('code');
-            $table->longText('keterangan');
+            $table->string('code')->nullable();
+            $table->longText('keterangan')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateShippingesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('shippinges');
+        Schema::dropIfExists('shippings');
     }
 }

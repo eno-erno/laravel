@@ -15,20 +15,20 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->integer('member_id');
-            $table->integer('shipping_id');
-            $table->integer('status_id');
-            $table->string('order_code');
-            $table->string('pay_status');
-            $table->integer('konfirmasi_pesanan');
-            $table->integer('delivery_status');
-            $table->integer('current_address');
-            $table->integer('payment');
-            $table->integer('province');
-            $table->integer('city');
-            $table->integer('shipping_charge');
-            $table->integer('weight');
-            $table->integer('total_price');
+            $table->integer('member_id')->nullable();
+            $table->integer('shipping_id')->nullable();
+            $table->integer('status_id')->nullable();
+            $table->string('order_code')->nullable();
+            $table->string('pay_status')->nullable();
+            $table->integer('konfirmasi_pesanan')->nullable();
+            $table->integer('delivery_status')->nullable();
+            $table->integer('current_address')->nullable();
+            $table->integer('payment')->nullable();
+            $table->integer('province')->nullable();
+            $table->integer('city')->nullable();
+            $table->integer('shipping_charge')->nullable();
+            $table->integer('weight')->nullable();
+            $table->integer('total_price')->nullable();
             $table->timestamps();
         });
     }

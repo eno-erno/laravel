@@ -18,13 +18,8 @@ $(function () {
         {
           backgroundColor: '#007bff',
           borderColor    : '#007bff',
-          data           : [1000, 2000, 3000, 2500, 2700, 2500, 3000]
+          data           : [100, 150, 300, 400, 100, 200, 500]
         },
-        {
-          backgroundColor: '#ced4da',
-          borderColor    : '#ced4da',
-          data           : [700, 1700, 2700, 2000, 1800, 1500, 2000]
-        }
       ]
     },
     options: {
@@ -56,9 +51,11 @@ $(function () {
             callback: function (value, index, values) {
               if (value >= 1000) {
                 value /= 1000
-                value += 'k'
+                value += ''
+                // value += 'k'
               }
-              return '$' + value
+              return '' + value
+              // return '$' + value
             }
           }, ticksStyle)
         }],

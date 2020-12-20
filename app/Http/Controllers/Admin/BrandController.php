@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Brand;
 
 class BrandController extends Controller
 {
@@ -14,7 +15,8 @@ class BrandController extends Controller
      */
     public function index()
     {
-        return view('backend/admin/content-pages/brand.index');
+        $dataAll = Brand::all();
+        return view('backend/admin/content-pages/brand.index', compact('dataAll'));
     }
 
     /**
@@ -36,11 +38,19 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        dd("oke");
-        $save = Brand::create([
-            'name' => $request->input('name'),
-            'logo' => $request->input('logo')
-        ]);
+
+        if ($request->hasFile('logo')) {
+            $resorce = $request->file('logo');
+            $name   = $resorce->getClientOriginalName();
+            $resorce->move(\base_path() . "/public/images-brand", $name);
+            $path = asset('/images-brand/'.$name);
+
+            $save = Brand::create([
+                'name' => $request->input('title'),
+                'logo' => $path,
+            ]);
+        }
+
 
         return redirect('admin/brand')->with(['success' => 'Data Berhasil di Tambahkan']);
     }
@@ -65,7 +75,7 @@ class BrandController extends Controller
     public function edit($id)
     {
         $data = Brand::find($id);
-        return view('backend/admin/content-pages/brand.update', compact($data));
+        return view('backend/admin/content-pages/brand.update', compact('data'));
     }
 
     /**
@@ -77,14 +87,27 @@ class BrandController extends Controller
      */
     public function update(Request $request, $id)
     {
-         $post = new Brand();
-        $post = Brand ::find($id);
+        $post = new Brand();
+        $post = Brand::find($id);
 
-        $post->name = $request->input('name');
-        $post->logo = $request->input('logo');
-        $post->save();
 
-        return redirect('/admin/brand')->with(['success' => 'Data Berhasil di Update']);
+       if ($request->hasFile('logo')) {
+            $resorce       = $request->file('logo');
+            $name   = $resorce->getClientOriginalName();
+            $resorce->move(\base_path() . "/public/images-brand", $name);
+            $path = asset('/images-brand/'.$name);
+
+            $post->name = $request->input('title');
+            $post->logo = $path;
+            $post->save();
+
+            echo "Gambar berhasil di upload";
+        } else {
+            $post->name = $request->input('title');
+            $post->save();
+        }
+
+       return redirect('admin/brand')->with(['success' => 'Data Berhasil diubah']);
     }
 
     /**
@@ -95,7 +118,7 @@ class BrandController extends Controller
      */
     public function destroy($id)
     {
-        $data = Brnad::where('id', $id)->first();
+        $data = Brand::where('id', $id)->first();
         $data->delete();
         return redirect('admin/brand')->with(['success' => 'Data Berhasil di Hapus']);
     }

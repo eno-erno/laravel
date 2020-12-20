@@ -45,23 +45,24 @@
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-2 col-form-label">Nama Produk</label>
                             <div class="col-sm-10">
-                                <input type="text" name="nama_produk" class="form-control">
+                                <input type="text" name="nama_produk" class="form-control" required>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-2 col-form-label">Kategori Produk</label>
                             <div class="col-sm-10">
-                               <select class="custom-select form-control mr-sm-2 select2 w-25"  name="kategori">
+                               <select class="custom-select form-control mr-sm-2 select2 w-25" required  name="kategori">
                                  <option value="">Pilih</option>
-                                 <option value="1">Baju Anak</option>
-                                 <option value="2">Celana Anak</option>
+                                 @foreach($dataCategry as $cat)
+                                    <option value="{{$cat->id}}">{{$cat->name}}</option>
+                                 @endforeach
                                </select>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-2 col-form-label">Brand Produk</label>
                             <div class="col-sm-10">
-                               <select class="custom-select form-control mr-sm-2 select2 w-25"  name="brand">
+                               <select class="custom-select form-control mr-sm-2 select2 w-25" required name="brand">
                                  <option value="">Pilih</option>
                                  @foreach($dataBrand as $brand)
                                     <option value="{{$brand->id}}">{{$brand->name}}</option>
@@ -72,31 +73,31 @@
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-2 col-form-label">SKU / (Kode produk)</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="sku">
+                                <input type="text" class="form-control" required name="sku">
                             </div>
                         </div>
                          <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-2 col-form-label">Quantity</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="qty">
+                                <input type="text" class="form-control" required name="qty">
                             </div>
                         </div>
                          <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-2 col-form-label">Harga Produk</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="price">
+                                <input type="text" class="form-control" required name="price">
                             </div>
                         </div>
                          <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-2 col-form-label">Berat</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="berat">
+                                <input type="text" class="form-control" required name="berat">
                             </div>
                         </div>
                          <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-2 col-form-label">Status Skok</label>
                             <div class="col-sm-10">
-                               <select class="custom-select form-control mr-sm-2 select2 w-25"  name="status_stok">
+                               <select class="custom-select form-control mr-sm-2 select2 w-25" required  name="status_stok">
                                  <option value="1">Atif</option>
                                  <option value="0">Stok Kosong</option>
                                </select>
@@ -113,7 +114,7 @@
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-2 col-form-label">Keterangan Produk</label>
                             <div class="col-sm-10">
-                                <textarea name="keterangan" id=""></textarea>
+                                <textarea name="keterangan" id="" required></textarea>
                             </div>
                         </div>
 

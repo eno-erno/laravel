@@ -1,6 +1,7 @@
 @extends('backend/admin/base.base')
 @section('title', 'Halaman About')
 @section('content-pages')
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
 <style>
     .select2-selection {height:37px !important}
 </style>
@@ -31,49 +32,59 @@
             <div class="col-md-12">
                 <div class="card">
               <div class="card-header">
-                <a href="{{url('admin/create-products')}}" class="btn btn-success">Tambah About</a>
+                <a href="{{url('admin/create-about')}}" class="btn btn-success"><i class="fas fa-plus"></i> Tambah About</a>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>Nama</th>
-                    <th>SKU</th>
-                    <th>Stock</th>
-                    <th>Quantity</th>
-                    <th>weight</th>
-                    <th>Image</th>
-                    <th>Price</th>
-                    <th>Description</th>
+                    <th>Judul</th>
+                    <th>Gambar</th>
+                    <th>Keterangan</th>
                     <th>Action</th>
                   </tr>
                   </thead>
                   <tbody>
-                  {{-- @foreach ($dataAll as $item) --}}
+                  <?php $no = 0;?>
+                  @foreach ($dataAll as $item)
+                  <?php $no++ ;?>
                          <tr>
-                            <th>Nama</th>
-                            <th>SKU</th>
-                            <th>Stock</th>
-                            <th>Quantity</th>
-                            <th>weight</th>
-                            <th>Image</th>
-                            <th>Price</th>
-                            <th>Description</th>
-                            <th>Action</th>
+                          <td>{{$item->title}}</td>
+                          <td>
+                            <a data-fancybox="gallery" href="{{$item->image}}"><img width="100" src="{{$item->image}}"></a>
+                          </td>
+                          <td><?= $item->description ?></td>
+                         <td> 
+                            <a href="{{url('admin/edit-about')}}/{{$item->id}}"><span class="badge badge-success p-2"><i class="far fa-eye"></i></span></a>
+                            <a href="" data-toggle="modal" data-target="#myModalDelete{{ $no }}"><span class="badge badge-danger p-2"><i class="far fa-trash-alt"></i></span></a>
+                          </td>
                         </tr>
-                  {{-- @endforeach                  --}}
+
+                         <!-- Modal detete -->
+                        <div class="modal fade" id="myModalDelete{{ $no }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header bg-success">
+                                <h5 class="modal-title" id="exampleModalLabel">Yakin dihapus !</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-warning" data-dismiss="modal"><i class="far fa-window-close"></i> Batal</button>
+                                <a href="{{url('admin/delete-about')}}/{{$item->id}}" class="btn btn-danger" name="save"><i class="far fa-trash-alt"></i> Hapus</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                  @endforeach                 
                   </tbody>
                   <tfoot>
                   <tr>
-                    <th>Nama</th>
-                    <th>SKU</th>
-                    <th>Stock</th>
-                    <th>Quantity</th>
-                    <th>weight</th>
-                    <th>Image</th>
-                    <th>Price</th>
-                    <th>Description</th>
+                     <th>Judul</th>
+                    <th>Gambar</th>
+                    <th>Keterangan</th>
                     <th>Action</th>
                   </tr>
                   </tfoot>
@@ -141,6 +152,7 @@
     $("#exampleModal").modal("show")
   })
 </script>
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 
 @endsection
  
