@@ -55,12 +55,16 @@ class ProductController extends Controller
         $qty = $request->input('qty');
         $id = $request->input('id');
         $datas = [];
+        $users = [
+            'name' => $request->input('nama'),
+            'email' => $request->input('email')
+        ];
+        $usersId = DB::table('users')->insertGetId($users);
+        
         $member = [
-            'nama' => $request->input('nama'),
+            'user_id' => $usersId,
             'no_telpn' => $request->input('tlp'),
-            'address' => $request->input('alamat'),
-            'catatan_pesanan' => $request->input('notes'),
-            'email' => $request->input('notes')
+            'address' => $request->input('alamat')
         ];
         $insertMamber = DB::table('members')->insertGetId($member);
         $code = 'PO'.$this->order_code(10);
@@ -68,7 +72,8 @@ class ProductController extends Controller
             'member_id' => $insertMamber,
             'order_code' => $code,
             'total_price' => $request->input('total'),
-            'delivery_status' => 0
+            'delivery_status' => 0,
+            'catatan_pesanan' => $request->input('notes')
         ];
         $insertOrders = DB::table('orders')->insertGetId($orders);
          
@@ -80,7 +85,7 @@ class ProductController extends Controller
             );
             array_push($datas, $data);
         }
-        $insertOrdersDetail = DB::table('order_detail')->insert($datas);
+        $insertOrdersDetail = DB::table('detail_orders')->insert($datas);
         if($insertOrdersDetail){
             return response()->json([
                 "status" => 200,
@@ -95,7 +100,6 @@ class ProductController extends Controller
     }
     public function order_code($code){
         $permitted_chars = '0123456789QWERTYUIOPLKJHGFDSAZXCVBNM';
-        // Output: 54esmdr0qf
         return substr(str_shuffle($permitted_chars), 0, $code);
     }
 }

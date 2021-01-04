@@ -50,17 +50,17 @@
                         <div class="position-relative mb-3">
                             <div class="badge text-white badge-"></div>
                             <a class="d-block" href="{{url('detail-produk/'.$rows->kode_produk)}}">
-                                <img class="img-fluid w-100" src="{{asset('frontend/img/'.$rows->thumbnail) }}" alt="...">
+                                <img class="img-fluid w-100" src="{{$rows->thumbnail}}" alt="...">
                             </a>
                             <div class="product-overlay">
                             <ul class="mb-0 list-inline">
                                 <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href="#"><i class="far fa-heart"></i></a></li>
-                                <li class="list-inline-item m-0 p-0"><button class="btn btn-sm btn-dark addToCart text-white" data-image="{{asset('frontend/img/'.$rows->thumbnail) }}" data-name="{{$rows->name}}" data-harga="{{$rows->harga}}" data-qty="1" data-id="{{$rows->id}}">Add to cart</button></li>
-                                <li class="list-inline-item mr-0"><a class="btn btn-sm btn-outline-dark" href="#productView" data-image="{{asset('frontend/img/'.$rows->thumbnail ) }}" data-name="{{$rows->name}}" data-harga="{{$rows->harga}}" data-toggle="modal" data-id="{{$rows->id}}" data-imageArr="{{$product_image}}"  data-desc="{{$rows->description}}"><i class="fas fa-expand"></i></a></li>
+                                <li class="list-inline-item m-0 p-0"><button class="btn btn-sm btn-dark addToCart text-white" data-image="{{$rows->thumbnail}}" data-name="{{ucwords($rows->name)}}" data-harga="{{$rows->harga}}" data-qty="1" data-id="{{$rows->id}}">Add to cart</button></li>
+                                <li class="list-inline-item mr-0"><a class="btn btn-sm btn-outline-dark" href="#productView" data-image="{{$rows->thumbnail}}" data-name="{{ucwords($rows->name)}}" data-harga="{{$rows->harga}}" data-toggle="modal" data-id="{{$rows->id}}" data-imageArr="{{$product_image}}"  data-desc="{{ucfirst(strip_tags($rows->description))}}"><i class="fas fa-expand"></i></a></li>
                             </ul>
                             </div>
                         </div>
-                        <h6> <a class="reset-anchor" href="{{url('detail-produk/'.$rows->kode_produk)}}">{{$rows->name}}</a></h6>
+                        <h6> <a class="reset-anchor" href="{{url('detail-produk/'.$rows->kode_produk)}}">{{ucwords($rows->name)}}</a></h6>
                         <p class="small text-muted">Rp {{ number_format($rows->harga, 0, ',', '.')}}</p>
                         </div>
                     </div>
