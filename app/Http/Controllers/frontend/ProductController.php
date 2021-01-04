@@ -85,7 +85,7 @@ class ProductController extends Controller
             );
             array_push($datas, $data);
         }
-        $insertOrdersDetail = DB::table('detail_orders')->insert($datas);
+        $insertOrdersDetail = DB::table('order_detail')->insert($datas);
         if($insertOrdersDetail){
             return response()->json([
                 "status" => 200,
