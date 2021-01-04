@@ -14,25 +14,25 @@
             <div class="row m-sm-0">
             <div class="col-sm-2 p-sm-0 order-2 order-sm-1 mt-2 mt-sm-0">
                 <div class="owl-thumbs d-flex flex-row flex-sm-column" data-slider-id="1">
-                <div class="owl-thumb-item flex-fill mb-2 mr-2 mr-sm-0"><img class="w-100" src="{{asset('frontend/img/'.$data->thumbnail)}}" alt="..."></div>
-                <div class="owl-thumb-item flex-fill mb-2 mr-2 mr-sm-0"><img class="w-100" src="{{asset('frontend/img/'.$data->thumbnail)}}" alt="..."></div>
-                <div class="owl-thumb-item flex-fill mb-2 mr-2 mr-sm-0"><img class="w-100" src="{{asset('frontend/img/'.$data->thumbnail)}}" alt="..."></div>
-                <div class="owl-thumb-item flex-fill mb-2"><img class="w-100" src="{{asset('frontend/img/'.$data->thumbnail)}}" alt="..."></div>
+                <div class="owl-thumb-item flex-fill mb-2 mr-2 mr-sm-0"><img class="w-100" src="{{$data->thumbnail}}" alt="..."></div>
+                <div class="owl-thumb-item flex-fill mb-2 mr-2 mr-sm-0"><img class="w-100" src="{{$data->thumbnail}}" alt="..."></div>
+                <div class="owl-thumb-item flex-fill mb-2 mr-2 mr-sm-0"><img class="w-100" src="{{$data->thumbnail}}" alt="..."></div>
+                <div class="owl-thumb-item flex-fill mb-2"><img class="w-100" src="{{$data->thumbnail}}" alt="..."></div>
                 </div>
             </div>
             <div class="col-sm-10 order-1 order-sm-2">
                 <div class="owl-carousel product-slider" data-slider-id="1">
-                    <a class="d-block" href="{{asset('frontend/img/'.$data->thumbnail)}}" data-lightbox="product" title="Product item 1">
-                        <img class="img-fluid" src="{{asset('frontend/img/'.$data->thumbnail)}}" alt="...">
+                    <a class="d-block" href="{{$data->thumbnail}}" data-lightbox="product" title="Product item 1">
+                        <img class="img-fluid" src="{{$data->thumbnail}}" alt="...">
                     </a>
-                    <a class="d-block" href="{{asset('frontend/img/'.$data->thumbnail)}}" data-lightbox="product" title="Product item 2">
-                        <img class="img-fluid" src="{{asset('frontend/img/'.$data->thumbnail)}}" alt="...">
+                    <a class="d-block" href="{{$data->thumbnail}}" data-lightbox="product" title="Product item 2">
+                        <img class="img-fluid" src="{{$data->thumbnail}}" alt="...">
                     </a>
-                    <a class="d-block" href="{{asset('frontend/img/'.$data->thumbnail)}}" data-lightbox="product" title="Product item 3">
-                        <img class="img-fluid" src="{{asset('frontend/img/'.$data->thumbnail)}}" alt="...">
+                    <a class="d-block" href="{{$data->thumbnail}}" data-lightbox="product" title="Product item 3">
+                        <img class="img-fluid" src="{{$data->thumbnail}}" alt="...">
                     </a>
-                    <a class="d-block" href="{{asset('frontend/img/'.$data->thumbnail)}}" data-lightbox="product" title="Product item 4">
-                        <img class="img-fluid" src="{{asset('frontend/img/'.$data->thumbnail)}}" alt="...">
+                    <a class="d-block" href="{{$data->thumbnail}}" data-lightbox="product" title="Product item 4">
+                        <img class="img-fluid" src="{{$data->thumbnail}}" alt="...">
                     </a>
                 </div>
             </div>
@@ -40,9 +40,9 @@
         </div>
         <!-- PRODUCT DETAILS-->
         <div class="col-lg-6">
-            <h1>{{$data->name}}</h1>
+            <h1>{{ucwords($data->name)}}</h1>
             <p class="text-muted lead">Rp {{number_format($data->harga, 0, ',', '.')}}</p>
-            <p class="text-small mb-4">{{$data->description}}</p>
+            <p class="text-small mb-4">{{ucfirst(strip_tags($data->description))}}</p>
             <div class="row align-items-stretch mb-4">
             <div class="col-sm-5 pr-sm-0">
                 <div class="border d-flex align-items-center justify-content-between py-1 px-3">
@@ -59,7 +59,7 @@
             <div class="col-sm-5 pl-sm-0"><button class="btn btn-dark btn-sm btn-block h-100 d-flex align-items-center justify-content-center px-0 AddDetails " >Add to cart</button></div>
             <!-- </div><a class="btn btn-link text-dark p-0 mb-4" href="#"><i class="far fa-heart mr-2"></i>Add to wish list</a><br> -->
             <ul class="list-unstyled small d-inline-block">
-            <li class="px-3 py-2 mb-1 bg-white"><strong class="text-uppercase">SKU:</strong><span class="ml-2 text-muted">{{$data->sku}}</span></li>
+            <li class="px-3 py-2 mb-1 bg-white"><strong class="text-uppercase">SKU:</strong><span class="ml-2 text-muted">{{$data->kode_produk}}</span></li>
             <!-- <li class="px-3 py-2 mb-1 bg-white text-muted"><strong class="text-uppercase text-dark">Category:</strong><a class="reset-anchor ml-2" href="#">Demo Products</a></li> -->
             <!-- <li class="px-3 py-2 mb-1 bg-white text-muted"><strong class="text-uppercase text-dark">Tags:</strong><a class="reset-anchor ml-2" href="#">Innovation</a></li> -->
             </ul>
